@@ -37,7 +37,7 @@ namespace Hotel_Rsesrvations.Controllers
             var reservationClient = await _context.ReservationClients
                 .Include(r => r.Client)
                 .Include(r => r.Reservation)
-                .FirstOrDefaultAsync(m => m.ReservationId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (reservationClient == null)
             {
                 return NotFound();
@@ -80,7 +80,10 @@ namespace Hotel_Rsesrvations.Controllers
                 return NotFound();
             }
 
-            var reservationClient = await _context.ReservationClients.FindAsync(id);
+            var reservationClient = await _context.ReservationClients
+                .Include(r => r.Client)
+                .Include(r => r.Reservation)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (reservationClient == null)
             {
                 return NotFound();
@@ -95,37 +98,43 @@ namespace Hotel_Rsesrvations.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ReservationId,ClientId")] ReservationClient reservationClient)
+        public async Task<IActionResult> Edit(int id, [Bind("ReservationId,ClientId")] ReservationClient reservationClient)
         {
-            if (id != reservationClient.ReservationId)
+            /*
+            if (id != reservationClient.Id)
             {
                 return NotFound();
-            }
+            }*/
 
             if (ModelState.IsValid)
             {
-                try
+                // Remove the existing reservation client from the database
+                var reservationClientOld = await _context.ReservationClients
+                    .Include(r => r.Client)
+                    .Include(r => r.Reservation)
+                    .FirstOrDefaultAsync(m => m.Id == id);
+
+                if (reservationClientOld == null)
                 {
-                    _context.Update(reservationClient);
-                    await _context.SaveChangesAsync();
+                    return NotFound();
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ReservationClientExists(reservationClient.ReservationId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+
+                _context.ReservationClients.Remove(reservationClientOld);
+                await _context.SaveChangesAsync();
+
+                // Add the new reservation client to the database
+                _context.Add(reservationClient);
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "firstName", reservationClient.ClientId);
             ViewData["ReservationId"] = new SelectList(_context.Reservations, "Id", "Id", reservationClient.ReservationId);
             return View(reservationClient);
         }
+
+
 
         // GET: ReservationClients/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -138,7 +147,7 @@ namespace Hotel_Rsesrvations.Controllers
             var reservationClient = await _context.ReservationClients
                 .Include(r => r.Client)
                 .Include(r => r.Reservation)
-                .FirstOrDefaultAsync(m => m.ReservationId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (reservationClient == null)
             {
                 return NotFound();
@@ -152,7 +161,14 @@ namespace Hotel_Rsesrvations.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var reservationClient = await _context.ReservationClients.FindAsync(id);
+            var reservationClient = await _context.ReservationClients
+     .Include(r => r.Client)
+     .Include(r => r.Reservation)
+     .FirstOrDefaultAsync(m => m.Id == id);
+            if (reservationClient == null)
+            {
+                return NotFound();
+            }
             _context.ReservationClients.Remove(reservationClient);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
