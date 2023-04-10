@@ -1,0 +1,77 @@
+﻿@model Hotel_Rsesrvations.Models.Reservation
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Reservation</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Room)
+        </dt>
+        <dd class="col-sm-10">
+            Id: @Html.DisplayFor(model => model.Room.ID) <br />
+            Number: @Html.DisplayFor(model => model.Room.number)<br />
+            Capacity: @Html.DisplayFor(model => model.Room.capacity)
+            Type: @Html.DisplayFor(model => model.Room.roomType) <br />
+            Price: @Html.DisplayFor(model => model.Room.priceForAdult) for an adult and
+            @Html.DisplayFor(model => model.Room.priceForChild) for a child
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.checkInDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.checkInDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.vacatingDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.vacatingDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.includingBreakfast)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.includingBreakfast)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.isAllInclusive)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.isAllInclusive)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.totalPrice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.totalPrice)
+        </dd>
+    </dl>
+    @if (Model.ReservationClients != null)
+    {
+        @foreach (var Item in Model.ReservationClients)
+        {
+            <a asp-controller="ReservationClients" asp-action="Details" asp-route-id="@Item.Reservation.Id">
+                Имена: @Item.Client.firstName @Item.Client.lastName<br />
+                Телефонен номер: @Item.Client.phoneNumber<br />
+                Пълнолетен/а: @if (Item.Client.isAdult == true)
+                {<h7>Да</h7>}
+                @if (Item.Client.isAdult != true)
+                {<h7>Не</h7>}
+                <br/>
+                <hr />
+            </a>
+
+        }
+    }
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
