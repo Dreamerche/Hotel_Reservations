@@ -24,6 +24,23 @@ namespace Hotel_Rsesrvations.Controllers
         {
             var applicationDbContext = _context.Reservations.Include(r => r.Room);
 
+            //update totalPrice
+
+            var reservations = _context.Reservations
+    .Include(r => r.Room)
+    .ToList();
+            foreach ( Reservation r in reservations)
+            {
+ List<ReservationClient> reservationClients = await _context.ReservationClients
+    .Include(rc => rc.Client) // Load the associated Client entities
+    .Where(rc => rc.ReservationId == r.Id)
+    .ToListAsync();
+            List<Client> clients = reservationClients.Select(rc => rc.Client).ToList();
+            r.totalPrice = calculateTotalCost(r, clients);
+            await _context.UpdateReservationClients(r, reservationClients, clients);
+            }
+           
+
             return View(await applicationDbContext.ToListAsync());
         }
 

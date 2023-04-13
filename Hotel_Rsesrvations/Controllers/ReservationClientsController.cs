@@ -61,6 +61,20 @@ namespace Hotel_Rsesrvations.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,ReservationId,ClientId")] ReservationClient reservationClient)
         {
+
+            int peopleReservatedForTRheRoom = await _context.ReservationClients
+    .CountAsync(rc => rc.ReservationId == reservationClient.ReservationId);
+            var reservation = await _context.Reservations
+               .Include(r => r.Room)
+               .FirstOrDefaultAsync(m => m.Id == reservationClient.ReservationId);
+            var room = reservation.Room;
+            if (room.capacity >= peopleReservatedForTRheRoom)
+            {
+                ModelState.AddModelError("ClientId", " The room is already fully booked.");
+                ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "firstName", reservationClient.ClientId);
+                ViewData["ReservationId"] = new SelectList(_context.Reservations, "Id", "Id", reservationClient.ReservationId);
+                return View(reservationClient);
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(reservationClient);

@@ -34,14 +34,22 @@ namespace Hotel_Rsesrvations.Controllers
             }
 
             var room = await _context.Rooms
+                .Include(r => r.Reservations) // eager load reservations
+                    .ThenInclude(r => r.ReservationClients) // eager load reservation clients
+                        .ThenInclude(rc => rc.Client) // eager load clients
                 .FirstOrDefaultAsync(m => m.ID == id);
+
             if (room == null)
             {
                 return NotFound();
             }
+            var reservations = room.Reservations.OrderBy(r => r.checkInDate);
+
+            room.Reservations = new HashSet<Reservation>(reservations);
 
             return View(room);
         }
+
 
         // GET: Rooms/Create
         public IActionResult Create()
