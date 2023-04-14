@@ -89,8 +89,10 @@ namespace Hotel_Rsesrvations.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,RoomId,checkInDate,vacatingDate,includingBreakfast,isAllInclusive,totalPrice")] Reservation reservation)
-        {      
+        {
             reservation.totalPrice = 0;
+
+
             if (reservation.vacatingDate < reservation.checkInDate)
             {
                 ModelState.AddModelError("vacatingDate", " Vacating date cannot be earlier than check-in date.");
@@ -99,7 +101,7 @@ namespace Hotel_Rsesrvations.Controllers
                 return View(reservation);
             }
 
-            if (reservation.includingBreakfast==true && reservation.isAllInclusive==true)
+            if (reservation.includingBreakfast == true && reservation.isAllInclusive == true)
             {
                 ModelState.AddModelError("includingBreakfast", "You can't have both breakfast and all inclusive.");
                 ViewData["RoomId"] = new SelectList(_context.Rooms, "ID", "roomType", reservation.RoomId);

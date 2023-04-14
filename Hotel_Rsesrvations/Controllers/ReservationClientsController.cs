@@ -68,9 +68,9 @@ namespace Hotel_Rsesrvations.Controllers
                .Include(r => r.Room)
                .FirstOrDefaultAsync(m => m.Id == reservationClient.ReservationId);
             var room = reservation.Room;
-            if (room.capacity >= peopleReservatedForTRheRoom)
+            if (room.capacity <= peopleReservatedForTRheRoom)
             {
-                ModelState.AddModelError("ClientId", " The room is already fully booked.");
+                ModelState.AddModelError("ReservationId", " The room is already fully booked.");
                 ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "firstName", reservationClient.ClientId);
                 ViewData["ReservationId"] = new SelectList(_context.Reservations, "Id", "Id", reservationClient.ReservationId);
                 return View(reservationClient);
