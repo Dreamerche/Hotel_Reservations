@@ -19,13 +19,15 @@ namespace Hotel_Rsesrvations.Controllers
             _context = context;
         }
 
-        // GET: Clients
+        /// <summary> Отваряне на таблица със записи за клиенти
+        /// </summary>
         public async Task<IActionResult> Index()
         {
             return View(await _context.Clients.ToListAsync());
         }
 
-        // GET: Clients/Details/5
+        /// <summary> Извеждане на детайли за даден клиент
+        /// </summary>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,12 +45,16 @@ namespace Hotel_Rsesrvations.Controllers
             return View(client);
         }
 
+        /// <summary> Създаване на клиент
+        /// </summary>
         // GET: Clients/Create
         public IActionResult Create()
         {
             return View();
         }
 
+        /// <summary> Добавяне на клиент
+        /// </summary>
         // POST: Clients/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -65,6 +71,8 @@ namespace Hotel_Rsesrvations.Controllers
             return View(client);
         }
 
+        /// <summary> Отваряне на страница за редактиране на клиент
+        /// </summary>
         // GET: Clients/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -81,6 +89,8 @@ namespace Hotel_Rsesrvations.Controllers
             return View(client);
         }
 
+        /// <summary> Редактиране на клиент
+        /// </summary>
         // POST: Clients/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -116,6 +126,8 @@ namespace Hotel_Rsesrvations.Controllers
             return View(client);
         }
 
+        /// <summary> Отваряне на страница за изтриване на даден клиент
+        /// </summary>
         // GET: Clients/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -134,6 +146,8 @@ namespace Hotel_Rsesrvations.Controllers
             return View(client);
         }
 
+        /// <summary> Изтриване на даден клиент
+        /// </summary>
         // POST: Clients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -145,6 +159,8 @@ namespace Hotel_Rsesrvations.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary> Метод за проверка дали клиентът съществува
+        /// </summary>
         private bool ClientExists(int id)
         {
             return _context.Clients.Any(e => e.Id == id);

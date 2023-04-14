@@ -43,6 +43,8 @@ namespace Hotel_Rsesrvations.Data
                 .WithMany(c => c.ReservationClients)
                 .HasForeignKey(rc => rc.ClientId);
         }
+
+
         public async Task<Reservation> UpdateReservationClients(Reservation reservation, List<ReservationClient>reservationClients,List<Client> clients)
         {
             var originalReservation = await this.FindAsync<Reservation>(reservation.Id);
@@ -59,7 +61,15 @@ namespace Hotel_Rsesrvations.Data
             }
             return originalReservation;
         }
+        public async Task<int> UpdateRoomsAsync(List<Room> rooms)
+        {
+            foreach (var room in rooms)
+            {
+                this.Entry(room).State = EntityState.Modified;
+            }
 
+            return await this.SaveChangesAsync();
+        }
 
 
     }

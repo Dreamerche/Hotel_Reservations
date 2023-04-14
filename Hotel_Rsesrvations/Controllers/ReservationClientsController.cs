@@ -19,6 +19,8 @@ namespace Hotel_Rsesrvations.Controllers
             _context = context;
         }
 
+        /// <summary> Отваряне на таблица със записи за резервация-клиент връзка
+        /// </summary>
         // GET: ReservationClients
         public async Task<IActionResult> Index()
         {
@@ -26,7 +28,8 @@ namespace Hotel_Rsesrvations.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: ReservationClients/Details/5
+        /// <summary> Извеждане на детайли за дадена резервация-клиент връзка
+        /// </summary>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,6 +49,8 @@ namespace Hotel_Rsesrvations.Controllers
             return View(reservationClient);
         }
 
+        /// <summary> Създаване на резервация-клиент връзка
+        /// </summary>
         // GET: ReservationClients/Create
         public IActionResult Create()
         {
@@ -54,6 +59,8 @@ namespace Hotel_Rsesrvations.Controllers
             return View();
         }
 
+        /// <summary> Добавяне на резервация-клиент връзка
+        /// </summary>
         // POST: ReservationClients/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -86,6 +93,8 @@ namespace Hotel_Rsesrvations.Controllers
             return View(reservationClient);
         }
 
+        /// <summary> Отваряне на страница за редактиране на резервация-клиент връзка
+        /// </summary>
         // GET: ReservationClients/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -107,6 +116,8 @@ namespace Hotel_Rsesrvations.Controllers
             return View(reservationClient);
         }
 
+        /// <summary> Редактиране на резервация-клиент връзка
+        /// </summary>
         // POST: ReservationClients/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -149,7 +160,8 @@ namespace Hotel_Rsesrvations.Controllers
         }
 
 
-
+        /// <summary> Отваряне на страница за изтриване на дадена резервация-клиент връзка
+        /// </summary>
         // GET: ReservationClients/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -170,6 +182,8 @@ namespace Hotel_Rsesrvations.Controllers
             return View(reservationClient);
         }
 
+        /// <summary> Изтриване на дадена резерация-клиент връзка
+        /// </summary>
         // POST: ReservationClients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -188,6 +202,8 @@ namespace Hotel_Rsesrvations.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>Проверка дали резерация-клиент връзката съществува
+        /// </summary>
         private bool ReservationClientExists(int id)
         {
             return _context.ReservationClients.Any(e => e.ReservationId == id);

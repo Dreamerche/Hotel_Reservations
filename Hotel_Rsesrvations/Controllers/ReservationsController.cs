@@ -18,7 +18,8 @@ namespace Hotel_Rsesrvations.Controllers
         {
             _context = context;
         }
-
+        /// <summary> Отваряне на таблица със записи за резервации
+        /// </summary>
         // GET: Reservations
         public async Task<IActionResult> Index()
         {
@@ -44,6 +45,8 @@ namespace Hotel_Rsesrvations.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+        /// <summary> Извеждане на детайли за дадена резервация
+        /// </summary>
         // GET: Reservations/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -75,7 +78,8 @@ namespace Hotel_Rsesrvations.Controllers
             return View(reservation);
         }
 
-
+        /// <summary> Създаване на резервация
+        /// </summary>
         // GET: Reservations/Create
         public IActionResult Create()
         {
@@ -91,6 +95,8 @@ ViewData["RoomId"] = new SelectList(rooms, "ID", "DisplayText", null, "NUMBER");
             return View();
         }
 
+        /// <summary> Добавяне на резервация
+        /// </summary>
         // POST: Reservations/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -142,6 +148,8 @@ ViewData["RoomId"] = new SelectList(rooms, "ID", "DisplayText", null, "NUMBER");
             return View(reservation);
         }
 
+        /// <summary> Отваряне на страница за редактиране на резервация
+        /// </summary>
         // GET: Reservations/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -161,6 +169,8 @@ ViewData["RoomId"] = new SelectList(rooms, "ID", "DisplayText", null, "NUMBER");
             return View(reservation);
         }
 
+        /// <summary> Редактиране на резервация
+        /// </summary>
         // POST: Reservations/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -203,6 +213,8 @@ ViewData["RoomId"] = new SelectList(rooms, "ID", "DisplayText", null, "NUMBER");
             return View(reservation);
         }
 
+        /// <summary> Отваряне на страница за изтриване на дадена резервация
+        /// </summary>
         // GET: Reservations/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -222,6 +234,8 @@ ViewData["RoomId"] = new SelectList(rooms, "ID", "DisplayText", null, "NUMBER");
             return View(reservation);
         }
 
+        /// <summary> Изтриване на дадена резервация
+        /// </summary>
         // POST: Reservations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -233,10 +247,18 @@ ViewData["RoomId"] = new SelectList(rooms, "ID", "DisplayText", null, "NUMBER");
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Проверка дали резервация съществува
+        /// </summary>
+
         private bool ReservationExists(int id)
         {
             return _context.Reservations.Any(e => e.Id == id);
         }
+        /// <summary>
+        /// Изчисляване на крайната сметка за резервация
+        /// </summary>
+
         private double calculateTotalCost(Reservation reservation, List<Client> clients)
         {
             double totalPrice = 0;
@@ -264,6 +286,9 @@ ViewData["RoomId"] = new SelectList(rooms, "ID", "DisplayText", null, "NUMBER");
             }
             return totalPrice;
         }
+        /// <summary>
+        /// Пресмятане на резервираните дни
+        /// </summary>
         public int GetNumberOfDays(Reservation reservation)
         {
             TimeSpan span = reservation.vacatingDate - reservation.checkInDate;
