@@ -5,50 +5,49 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Детайли за стая</h1>
 
 <div>
-    <h4>Room</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.capacity)
+            Вместимост
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.capacity)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.roomType)
+            Тип стая
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.roomType)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.isOccupied)
+            Заета ли е
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.isOccupied)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.priceForAdult)
+            Цена нощувка за възрастен
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.priceForAdult)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.priceForChild)
+            Цена нощувка за дете
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.priceForChild)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.number)
+            Номер
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.number)
         </dd>
 
-        @if (Model.Reservations != null)
+        @if (Model.Reservations.Count >0)
         {
             <dt class="col-sm-2">Резервирана в периодите:<br /></dt>
             <dd class="col-sm-10">
@@ -66,6 +65,6 @@
             </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Редактирай</a> |
+    <a asp-action="Index">Назад към стаи</a>
 </div>

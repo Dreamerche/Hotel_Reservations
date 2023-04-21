@@ -5,45 +5,44 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Delete</h1>
+<h1>Изтриване на стая</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Сигурни ли сте, че искате да изтриете тази стая?</h3>
 <div>
-    <h4>Room</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.capacity)
+            Вместимост
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.capacity)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.roomType)
+            Тип стая
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.roomType)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.isOccupied)
+            Заета ли е
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.isOccupied)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.priceForAdult)
+            Цена нощувка за възрастен
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.priceForAdult)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.priceForChild)
+            Цена нощувка за дете
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.priceForChild)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.number)
+            Номер
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.number)
@@ -52,7 +51,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="ID" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Изтрий" class="btn btn-danger" /> |
+        <a asp-action="Index">Назад към стаи</a>
     </form>
 </div>

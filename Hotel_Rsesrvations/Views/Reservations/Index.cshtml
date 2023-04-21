@@ -10,10 +10,10 @@
             $('#indexTable').DataTable();
         });</script>
 }
-<h1>Index</h1>
+<h1>Резервации</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Създаване на нова резервация</a>
 </p>
 <div class="table-responsive">
     <table id="indexTable" class="table table-hover">
@@ -23,22 +23,22 @@
                     @Html.DisplayNameFor(model => model.Id)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Room)
+                    Стая
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.checkInDate)
+                    Настаняване
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.vacatingDate)
+                     Освобождаване
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.includingBreakfast)
+                    Закуска
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.isAllInclusive)
+                    AllInclusive
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.totalPrice)
+                    Сума
                 </th>
                 <th></th>
             </tr>
@@ -66,12 +66,12 @@
                         @Html.DisplayFor(modelItem => item.isAllInclusive)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.totalPrice)
+                        @Html.DisplayFor(modelItem => item.totalPrice) лв.
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Редактирай</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Детайли</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Изтрий</a>
                     </td>
                 </tr>
             }

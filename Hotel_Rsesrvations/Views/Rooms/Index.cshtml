@@ -11,32 +11,32 @@
         });</script>
 }
 
-<h1>Index</h1>
+<h1>Стаи</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Създаване на нова стая</a>
 </p>
 <div class="table-responsive">
     <table id="indexTable" class="table table-hover">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.capacity)
+                    Вместимост
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.roomType)
+                    Тип стая
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.isOccupied)
+                    Заета ли е
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.priceForAdult)
+                    Цена нощувка възрастен
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.priceForChild)
+                    Цена нощувка дете
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.number)
+                   Номер
                 </th>
                 <th></th>
             </tr>
@@ -55,18 +55,18 @@
                         @Html.DisplayFor(modelItem => item.isOccupied)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.priceForAdult)
+                        @Html.DisplayFor(modelItem => item.priceForAdult) лв.
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.priceForChild)
+                        @Html.DisplayFor(modelItem => item.priceForChild) лв.
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.number)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.ID">Редактирай</a> |
+                        <a asp-action="Details" asp-route-id="@item.ID">Детайли</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ID">Изтрий</a>
                     </td>
                 </tr>
             }

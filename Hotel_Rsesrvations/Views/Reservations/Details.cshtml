@@ -5,10 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Детайли за резервация</h1>
 
 <div>
-    <h4>Reservation</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -18,42 +17,42 @@
             @Html.DisplayFor(model => model.Id)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Room)
+            Стая
         </dt>
         <dd class="col-sm-10">
             Id: @Html.DisplayFor(model => model.Room.ID) <br />
-            Number: @Html.DisplayFor(model => model.Room.number)<br />
-            Capacity: @Html.DisplayFor(model => model.Room.capacity)
-            Type: @Html.DisplayFor(model => model.Room.roomType) <br />
-            Price: @Html.DisplayFor(model => model.Room.priceForAdult) for an adult and
-            @Html.DisplayFor(model => model.Room.priceForChild) for a child
+            Номер: @Html.DisplayFor(model => model.Room.number)<br />
+            Вместимост: @Html.DisplayFor(model => model.Room.capacity) души
+            Тип: @Html.DisplayFor(model => model.Room.roomType) <br />
+            Ценоразпис: @Html.DisplayFor(model => model.Room.priceForAdult) за възрастен и 
+            @Html.DisplayFor(model => model.Room.priceForChild) за дете за една нощувка
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.checkInDate)
+            Настаняване
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.checkInDate)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.vacatingDate)
+            Освобождаване
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.vacatingDate)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.includingBreakfast)
+            Закуска
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.includingBreakfast)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.isAllInclusive)
+            AllInclusive
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.isAllInclusive)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.totalPrice)
+            Сума
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.totalPrice)
@@ -78,6 +77,6 @@
     }
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Редактирай</a> |
+    <a asp-action="Index">Назад към резервации</a>
 </div>

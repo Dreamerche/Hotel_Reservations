@@ -5,10 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Детайли за връзка резервация-клиент</h1>
 
 <div>
-    <h4>ReservationClient</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -18,21 +17,21 @@
             @Html.DisplayFor(model => model.Id)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Reservation)
+            Номер на резервация
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Reservation.Id)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Client)
+            клиент
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Client.firstName)
+            @Html.DisplayFor(model => model.Client.firstName) @Html.DisplayFor(model => model.Client.lastName)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a> |
-    <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Редактирай</a> |
+    <a asp-action="Index">Назад към списък с резервация-клиент връзки</a> |
+    <a asp-action="Delete" asp-route-id="@Model.Id">Изтрий</a>
 </div>

@@ -116,16 +116,32 @@ ViewData["RoomId"] = new SelectList(rooms, "ID", "DisplayText", null, "NUMBER");
 
             foreach (Reservation item in reservations)
             {
-                if ((item.checkInDate<=reservation.checkInDate && item.vacatingDate>=reservation.checkInDate)|| (item.checkInDate <= reservation.vacatingDate && item.vacatingDate >= reservation.vacatingDate))
+                if (item.checkInDate<=reservation.checkInDate && item.vacatingDate>=reservation.checkInDate)
                 {
-                    ModelState.AddModelError("vacatingDate", "The room isn't free in this period.");
+                    string message = "The room is already reservated for the period " + item.checkInDate + " - " + item.vacatingDate + ".";
+                    ModelState.AddModelError("vacatingDate", message);
                     ViewData["RoomId"] = new SelectList(_context.Rooms, "ID", "roomType", reservation.RoomId);
                     return View(reservation);
                 }
+                if(item.checkInDate <= reservation.vacatingDate && item.vacatingDate >= reservation.vacatingDate)
+                {
+                    string message = "The room is already reservated for the period " + item.checkInDate + " - " + item.vacatingDate + ".";
+                    ModelState.AddModelError("vacatingDate", message);
+                    ViewData["RoomId"] = new SelectList(_context.Rooms, "ID", "roomType", reservation.RoomId);
+                    return View(reservation);
+                }
+                if (item.checkInDate >= reservation.checkInDate && item.vacatingDate <= reservation.vacatingDate)
+                {
+                    string message = "The room is already reservated for the period " + item.checkInDate + " - " + item.vacatingDate + ".";
+                    ModelState.AddModelError("vacatingDate", message);
+                    ViewData["RoomId"] = new SelectList(_context.Rooms, "ID", "roomType", reservation.RoomId);
+                    return View(reservation);
+                }
+
             }
 
             if (reservation.vacatingDate < reservation.checkInDate)
-            {
+            { 
                 ModelState.AddModelError("vacatingDate", " Vacating date cannot be earlier than check-in date.");
                 ViewData["RoomId"] = new SelectList(_context.Rooms, "ID", "roomType", reservation.RoomId);
                 return View(reservation);

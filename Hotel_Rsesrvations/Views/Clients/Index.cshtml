@@ -10,26 +10,26 @@
             $('#indexTable').DataTable();
         });</script>
 }
-<h1>Index</h1>
+<h1>Клиенти</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Създаване на нов клиент</a>
 </p>
 <div class="table-responsive">
     <table id="indexTable" class="table table-hover">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.firstName)
+                    Име
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.lastName)
+                    Фамилия
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.phoneNumber)
+                    Телефонен номер
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.isAdult)
+                    Пълнолетен ли е клиентът
                 </th>
                 <th></th>
             </tr>
@@ -51,9 +51,9 @@
                         @Html.DisplayFor(modelItem => item.isAdult)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Редактирай</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Детайли</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Изтрий</a>
                     </td>
                 </tr>
             }

@@ -5,36 +5,36 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>Създаване на резервация</h1>
 
-<h4>Reservation</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="RoomId" class="control-label">Стая</label>
                 <select asp-for="RoomId" class="form-control" asp-items="ViewBag.RoomId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="checkInDate" class="control-label"></label>
+                <label asp-for="checkInDate" class="control-label">Настаняване</label>
                 <input asp-for="checkInDate" class="form-control" />
                 <span asp-validation-for="checkInDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="vacatingDate" class="control-label"></label>
+                <label asp-for="vacatingDate" class="control-label">Освобождаване</label>
                 <input asp-for="vacatingDate" class="form-control" />
                 <span asp-validation-for="vacatingDate" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="includingBreakfast" /> @Html.DisplayNameFor(model => model.includingBreakfast)
+                    <input class="form-check-input" asp-for="includingBreakfast" /> закуска(оскъпява цената на нощувките с 10%)
                 </label>
                 <span asp-validation-for="includingBreakfast" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="isAllInclusive" /> @Html.DisplayNameFor(model => model.isAllInclusive)
+                    <input class="form-check-input" asp-for="isAllInclusive" /> all inclusive(оскъпява цената на нощувките с 30%)
                 </label>
                 <span asp-validation-for="isAllInclusive" class="text-danger"></span>
             </div>
@@ -44,14 +44,14 @@
                 <input asp-for="totalPrice" class="form-control" disabled="disabled"/>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Създай" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Назад към резервации</a>
 </div>
 
 @section Scripts {
