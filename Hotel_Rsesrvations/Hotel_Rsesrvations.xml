@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hotel_Rsesrvations</name>
+    </assembly>
+    <members>
+        <member name="M:Hotel_Rsesrvations.Controllers.ClientsController.Index">
+            <summary> Отваряне на таблица със записи за клиенти
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ClientsController.Details(System.Nullable{System.Int32})">
+            <summary> Извеждане на детайли за даден клиент
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ClientsController.Create">
+            <summary> Създаване на клиент
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ClientsController.Create(Hotel_Rsesrvations.Models.Client)">
+            <summary> Добавяне на клиент
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ClientsController.Edit(System.Nullable{System.Int32})">
+            <summary> Отваряне на страница за редактиране на клиент
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ClientsController.Edit(System.Int32,Hotel_Rsesrvations.Models.Client)">
+            <summary> Редактиране на клиент
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ClientsController.Delete(System.Nullable{System.Int32})">
+            <summary> Отваряне на страница за изтриване на даден клиент
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ClientsController.DeleteConfirmed(System.Int32)">
+            <summary> Изтриване на даден клиент
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ClientsController.ClientExists(System.Int32)">
+            <summary> Метод за проверка дали клиентът съществува
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationClientsController.Index">
+            <summary> Отваряне на таблица със записи за резервация-клиент връзка
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationClientsController.Details(System.Nullable{System.Int32})">
+            <summary> Извеждане на детайли за дадена резервация-клиент връзка
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationClientsController.Create">
+            <summary> Създаване на резервация-клиент връзка
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationClientsController.Create(Hotel_Rsesrvations.Models.ReservationClient)">
+            <summary> Добавяне на резервация-клиент връзка
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationClientsController.Edit(System.Nullable{System.Int32})">
+            <summary> Отваряне на страница за редактиране на резервация-клиент връзка
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationClientsController.Edit(System.Int32,Hotel_Rsesrvations.Models.ReservationClient)">
+            <summary> Редактиране на резервация-клиент връзка
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationClientsController.Delete(System.Nullable{System.Int32})">
+            <summary> Отваряне на страница за изтриване на дадена резервация-клиент връзка
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationClientsController.DeleteConfirmed(System.Int32)">
+            <summary> Изтриване на дадена резерация-клиент връзка
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationClientsController.ReservationClientExists(System.Int32)">
+            <summary>Проверка дали резерация-клиент връзката съществува
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationsController.Index">
+            <summary> Отваряне на таблица със записи за резервации
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationsController.Details(System.Nullable{System.Int32})">
+            <summary> Извеждане на детайли за дадена резервация
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationsController.Create">
+            <summary> Създаване на резервация
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationsController.Create(Hotel_Rsesrvations.Models.Reservation)">
+            <summary> Добавяне на резервация
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationsController.Edit(System.Nullable{System.Int32})">
+            <summary> Отваряне на страница за редактиране на резервация
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationsController.Edit(System.Int32,Hotel_Rsesrvations.Models.Reservation)">
+            <summary> Редактиране на резервация
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationsController.Delete(System.Nullable{System.Int32})">
+            <summary> Отваряне на страница за изтриване на дадена резервация
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationsController.DeleteConfirmed(System.Int32)">
+            <summary> Изтриване на дадена резервация
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationsController.ReservationExists(System.Int32)">
+            <summary>
+            Проверка дали резервация съществува
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationsController.calculateTotalCost(Hotel_Rsesrvations.Models.Reservation,System.Collections.Generic.List{Hotel_Rsesrvations.Models.Client})">
+            <summary>
+            Изчисляване на крайната сметка за резервация
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.ReservationsController.GetNumberOfDays(Hotel_Rsesrvations.Models.Reservation)">
+            <summary>
+            Пресмятане на резервираните дни
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.RoomsController.Index">
+            <summary> Отваряне на таблица със записи за стаи
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.RoomsController.Details(System.Nullable{System.Int32})">
+            <summary> Извеждане на детайли за дадена стая
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.RoomsController.Create">
+            <summary> Създаване на стая
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.RoomsController.Create(Hotel_Rsesrvations.Models.Room)">
+            <summary> Добавяне на стая
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.RoomsController.Edit(System.Nullable{System.Int32})">
+            <summary> Отваряне на страница за редактиране на стая
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.RoomsController.Edit(System.Int32,Hotel_Rsesrvations.Models.Room)">
+            <summary> Редактиране на стая
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.RoomsController.Delete(System.Nullable{System.Int32})">
+            <summary> Отваряне на страница за изтриване на дадена стая
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.RoomsController.DeleteConfirmed(System.Int32)">
+            <summary> Изтриване на дадена стая
+            </summary>
+        </member>
+        <member name="M:Hotel_Rsesrvations.Controllers.RoomsController.RoomExists(System.Int32)">
+            <summary> Метод за проверка дали стаята съществува
+            </summary>
+        </member>
+    </members>
+</doc>

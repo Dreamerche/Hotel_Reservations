@@ -5,6 +5,10 @@
     <UserSecretsId>aspnet-Hotel_Rsesrvations-3E3C88B8-404F-44D0-AC01-49CD3D1C63FA</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\soft uni\Софтуерно инжинерство\4\Hotel_Rsesrvations\Hotel_Rsesrvations\Hotel_Rsesrvations.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Include="wwwroot\lib\bootstrap\dist\css\home.jpg" />
   </ItemGroup>
