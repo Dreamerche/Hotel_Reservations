@@ -14,12 +14,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ReservationId" class="control-label">Резервация</label>
-                <select asp-for="ReservationId" class="form-control" asp-items="ViewBag.ReservationId"></select>
+                <select asp-for="ReservationId" class="form-control" asp-items="ViewBag.Reservations"></select>
                 <span asp-validation-for="ReservationId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ClientId" class="control-label">Клиент</label>
-                <select asp-for="ClientId" class ="form-control" asp-items="ViewBag.ClientId"></select>
+                <select asp-for="ClientId" class ="form-control" asp-items="ViewBag.Clients"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Създай" class="btn btn-primary" />

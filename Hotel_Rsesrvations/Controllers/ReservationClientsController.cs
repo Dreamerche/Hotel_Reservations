@@ -54,8 +54,24 @@ namespace Hotel_Rsesrvations.Controllers
         // GET: ReservationClients/Create
         public IActionResult Create()
         {
-            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "firstName");
-            ViewData["ReservationId"] = new SelectList(_context.Reservations, "Id", "Id");
+            var clients = _context.Clients.Select(c => new
+            {
+                Id = c.Id,
+                DisplayText = c.Id + " | " + c.firstName + " " + c.lastName + " | " + c.phoneNumber
+            }).ToList();
+            // ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "firstName");
+            ViewData["Clients"] = new SelectList(clients, "Id", "DisplayText");
+
+
+
+            //ViewData["ReservationId"] = new SelectList(_context.Reservations, "Id", "Id");
+            var reservations = _context.Reservations.Include(r => r.Room).Select(r => new
+            {
+                Id = r.Id,
+                DisplayText ="Reservation: "+r.Id +" | "+r.checkInDate.ToString("dd/MM/yyyy H:mm:ss") + "-"+r.vacatingDate.ToString("dd/MM/yyyy H:mm:ss") + " | Room: id-"+r.Room.ID+", number-"+r.Room.number+", type:"+r.Room.roomType+", prices:"+r.Room.priceForAdult+"лв., "+r.Room.priceForChild+"лв."
+            }).ToList();
+            // ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "firstName");
+            ViewData["Reservations"] = new SelectList(reservations, "Id", "DisplayText");
             return View();
         }
 
@@ -111,8 +127,24 @@ namespace Hotel_Rsesrvations.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "firstName", reservationClient.ClientId);
-            ViewData["ReservationId"] = new SelectList(_context.Reservations, "Id", "Id", reservationClient.ReservationId);
+           
+            var clients = _context.Clients.Select(c => new
+            {
+                Id = c.Id,
+                DisplayText = c.Id + " | " + c.firstName + " " + c.lastName + " | " + c.phoneNumber
+            }).ToList();
+            // ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "firstName");
+            ViewData["ClientId"] = new SelectList(clients, "Id", "DisplayText",reservationClient.ClientId);
+
+
+            //ViewData["ReservationId"] = new SelectList(_context.Reservations, "Id", "Id");
+            var reservations = _context.Reservations.Include(r => r.Room).Select(r => new
+            {
+                Id = r.Id,
+                DisplayText = "Reservation: " + r.Id + " | " + r.checkInDate.ToString("dd/MM/yyyy H:mm:ss") + "-" + r.vacatingDate.ToString("dd/MM/yyyy H:mm:ss") + " | Room: id-" + r.Room.ID + ", number-" + r.Room.number + ", type:" + r.Room.roomType + ", prices:" + r.Room.priceForAdult + "лв., " + r.Room.priceForChild + "лв."
+            }).ToList();
+            // ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "firstName");
+            ViewData["ReservationId"] = new SelectList(reservations, "Id", "DisplayText",reservationClient.ClientId);
             return View(reservationClient);
         }
 

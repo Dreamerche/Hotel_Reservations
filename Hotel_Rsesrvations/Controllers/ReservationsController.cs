@@ -181,7 +181,14 @@ ViewData["RoomId"] = new SelectList(rooms, "ID", "DisplayText", null, "NUMBER");
                 return NotFound();
             }
 
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "ID", "roomType", reservation.RoomId);
+            var rooms = _context.Rooms.Select(r => new
+            {
+                ID = r.ID,
+                NUMBER = r.number,
+                DisplayText = r.roomType + " - Capacity: " + r.capacity + " - Price for Adult: " + r.priceForAdult + " - Price for Child: " + r.priceForChild
+            }).ToList();
+
+            ViewData["RoomId"] = new SelectList(rooms, "ID", "DisplayText", reservation.RoomId, "NUMBER");
             return View(reservation);
         }
 
