@@ -11,7 +11,6 @@
     <h4>Event</h4>
     <hr />
     <dl class="row">
-        <img src="@Html.DisplayFor(model=> model.photoLink)" onerror="this.onerror=null; this.src='../../lib/bootstrap/dist/css/img_if_not_having_event_photo_found.jpg'" width="150px" />
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.name)
         </dt>
@@ -32,7 +31,7 @@
         </dd>
         @if (Model.Tickets.Count > 0)
         {
-            <dt class="col-sm-2">Резервирана в периодите:<br /></dt>
+            <dt class="col-sm-2">Записали се учатсници:<br /></dt>
             <dd class="col-sm-10">
                 @foreach (var Item in Model.Tickets)
                 {
@@ -45,7 +44,7 @@
                 }
             </dd>
         }
-    </dl>
+
     </dl>
 </div>
 <div>

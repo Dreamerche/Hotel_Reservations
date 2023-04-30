@@ -22,8 +22,10 @@ namespace Hotel_Rsesrvations.Controllers
         // GET: Events
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Events.ToListAsync());
+            var events = await _context.Events.Include(e => e.Tickets).ToListAsync();
+            return View(events);
         }
+
 
         // GET: Events/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -38,6 +40,29 @@ namespace Hotel_Rsesrvations.Controllers
             if (@event == null)
             {
                 return NotFound();
+            }
+
+
+            var tickets = await _context.Tickets
+                .Include(t => t.Event)
+                .ToListAsync();
+
+            foreach (var ticket in tickets)
+            {
+                var user = await _context.Users.FindAsync(ticket.UserId);
+                ticket.User = new ApplicationUser
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    Email = user.Email
+                };
+            }
+                foreach (var item1 in tickets)
+                {
+                    if (@event.ID == item1.EventId)
+                    {
+                        @event.Tickets.Add(item1);
+                    }
             }
 
             return View(@event);
