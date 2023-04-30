@@ -22,8 +22,25 @@ namespace Hotel_Rsesrvations.Controllers
         // GET: Tickets
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Tickets.Include(t => t.Event).Include(t => t.User);
-            return View(await applicationDbContext.ToListAsync());
+            var tickets = await _context.Tickets
+                .Include(t => t.Event)
+                .ToListAsync();
+
+            foreach (var ticket in tickets)
+            {
+                var user = await _context.Users.FindAsync(ticket.UserId);
+                ticket.User = new ApplicationUser
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    Email = user.Email
+                };
+            }
+            foreach (var item in tickets)
+            {
+                Console.WriteLine(item.UserId+" "+item.User);
+            }
+            return View(tickets);
         }
 
         // GET: Tickets/Details/5

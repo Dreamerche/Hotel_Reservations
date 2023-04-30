@@ -22,7 +22,7 @@ namespace Hotel_Rsesrvations.Models
         public DateTime premiereDate { get; set; }
         [Required]
         [Column("PhotoLink")]
-        public DateTime photoLink { get; set; }
+        public string photoLink { get; set; }
         public virtual HashSet<Ticket> Tickets { get; set; }
 
         public Event()

@@ -14,6 +14,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.photoLink)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.name)
             </th>
             <th>
@@ -22,15 +25,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.premiereDate)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.photoLink)
-            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+              <img src="@Html.DisplayFor(modelItem => item.photoLink)" onerror="this.onerror=null; this.src='../../lib/bootstrap/dist/css/img_if_not_having_event_photo_found.jpg'" width="150px"/>
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.name)
             </td>
@@ -40,9 +43,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.premiereDate)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.photoLink)
-            </td>
+
+
+
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
