@@ -4,14 +4,16 @@ using Hotel_Rsesrvations.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Hotel_Rsesrvations.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230430082533_AddAspNetUsersToTicket")]
+    partial class AddAspNetUsersToTicket
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,38 +49,6 @@ namespace Hotel_Rsesrvations.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clients");
-                });
-
-            modelBuilder.Entity("Hotel_Rsesrvations.Models.Event", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("description")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)")
-                        .HasColumnName("Description");
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)")
-                        .HasColumnName("Name");
-
-                    b.Property<DateTime>("photoLink")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("PhotoLink");
-
-                    b.Property<DateTime>("premiereDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("PremiereDate");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Events");
                 });
 
             modelBuilder.Entity("Hotel_Rsesrvations.Models.Reservation", b =>
@@ -165,29 +135,6 @@ namespace Hotel_Rsesrvations.Data.Migrations
                     b.ToTable("Rooms");
                 });
 
-            modelBuilder.Entity("Hotel_Rsesrvations.Models.Ticket", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("EventId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EventId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Tickets");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -251,10 +198,6 @@ namespace Hotel_Rsesrvations.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -306,8 +249,6 @@ namespace Hotel_Rsesrvations.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -336,22 +277,19 @@ namespace Hotel_Rsesrvations.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("LoginProvider", "ProviderKey");
-
-                    b.HasIndex("UserId");
+                    b.HasKey("UserId");
 
                     b.ToTable("AspNetUserLogins");
                 });
@@ -390,13 +328,6 @@ namespace Hotel_Rsesrvations.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Hotel_Rsesrvations.Models.ApplicationUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
-                });
-
             modelBuilder.Entity("Hotel_Rsesrvations.Models.Reservation", b =>
                 {
                     b.HasOne("Hotel_Rsesrvations.Models.Room", "Room")
@@ -425,25 +356,6 @@ namespace Hotel_Rsesrvations.Data.Migrations
                     b.Navigation("Client");
 
                     b.Navigation("Reservation");
-                });
-
-            modelBuilder.Entity("Hotel_Rsesrvations.Models.Ticket", b =>
-                {
-                    b.HasOne("Hotel_Rsesrvations.Models.Event", "Event")
-                        .WithMany("Tickets")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Hotel_Rsesrvations.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Event");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -500,11 +412,6 @@ namespace Hotel_Rsesrvations.Data.Migrations
             modelBuilder.Entity("Hotel_Rsesrvations.Models.Client", b =>
                 {
                     b.Navigation("ReservationClients");
-                });
-
-            modelBuilder.Entity("Hotel_Rsesrvations.Models.Event", b =>
-                {
-                    b.Navigation("Tickets");
                 });
 
             modelBuilder.Entity("Hotel_Rsesrvations.Models.Reservation", b =>

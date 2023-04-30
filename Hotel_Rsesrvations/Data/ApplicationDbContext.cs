@@ -20,6 +20,10 @@ namespace Hotel_Rsesrvations.Data
         public DbSet<Client> Clients { get; set; }
         public DbSet<ReservationClient> ReservationClients { get; set; }
 
+        public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Event> Events { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -42,6 +46,16 @@ namespace Hotel_Rsesrvations.Data
                 .HasOne(rc => rc.Client)
                 .WithMany(c => c.ReservationClients)
                 .HasForeignKey(rc => rc.ClientId);
+
+
+
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Ticket>()
+                .HasOne(t => t.User)
+                .WithMany()
+                .HasForeignKey(t => t.UserId)
+                .IsRequired();
         }
 
 
